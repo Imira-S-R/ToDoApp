@@ -1,6 +1,6 @@
-# manage_my_time
+# ManageMyTime
 
-A new Flutter project.
+A Time Management App Made Using Flutter And SQLite. More Features Will Be Added Soon.
 
 ## Getting Started
 
