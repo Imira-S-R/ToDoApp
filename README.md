@@ -1,6 +1,6 @@
-# ManageMyTime
+# ManageMyTasks
 
-A Time Management App Made Using Flutter And SQLite
+A Task Management App Made Using Flutter And SQLite
 =======
 Basic To Do App Created Using Flutter And SQLite Database.
 More Features Will Be Added Soon.
