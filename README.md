@@ -1,16 +1,9 @@
 # ManageMyTime
 
+<<<<<<< HEAD
 A Time Management App Made Using Flutter And SQLite. More Features Will Be Added Soon.
+=======
+Basic To Do App Created Using Flutter And SQLite Database.
+If There Is Any Problem Or A New Feature You Want Let Me Know.
+>>>>>>> c6d8ac04fa64949a0fcaa0fedcc92a52dcc2ef69
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
