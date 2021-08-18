@@ -68,7 +68,7 @@ class _TaskWidgetState extends State<TaskWidget> {
                             )));
               },
               child: Container(
-                height: 53.0,
+                height: 49.0,
                 width: double.infinity,
                 decoration: BoxDecoration(
                     color: Colors.white),

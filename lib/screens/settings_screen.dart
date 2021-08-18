@@ -43,7 +43,7 @@ class Settings extends StatelessWidget {
                       ),
                       SizedBox(height: 20.0,),
                       Text(
-                        'Version: 1.0.0',
+                        'Version: 1.5.0',
                         style: TextStyle(
                             color: Colors.red,
                             fontWeight: FontWeight.bold,
