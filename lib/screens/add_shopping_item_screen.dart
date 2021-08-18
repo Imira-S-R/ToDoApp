@@ -79,7 +79,7 @@ class _AddShoppingItemState extends State<AddShoppingItem> {
                   children: <Widget>[
                     GestureDetector(
                       onTap: () {
-                        var item = ShoppingItem(itemName: itemName.text, itemPrice: int.parse(itemPrice.text));
+                        var item = ShoppingItem(itemName: itemName.text, itemPrice: 0);
                         ShoppingItemDatabase.instance.create(item);
                         Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => ShoppingCartScreen()));
                       },
