@@ -2,8 +2,8 @@
 
 A Task Management App Made Using Flutter And SQLite
 =======
-Basic To Do App Created Using Flutter And SQLite Database.
-More Features Will Be Added Soon.
+Basic To Do App Created Using Flutter And SQLite Database.<br />
+More Features Will Be Added Soon.<br />
 If There Is Any Problem Or A New Feature You Want Let Me Know.
 
 Version History
