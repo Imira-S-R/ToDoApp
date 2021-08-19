@@ -28,34 +28,80 @@ class Settings extends StatelessWidget {
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(30.0),
                         topRight: Radius.circular(30.0)),
-                    color: Colors.white),
+                    color: Colors.grey[100]),
                 child: Padding(
                   padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'Manage My Tasks',
-                        style: TextStyle(
-                            color: Colors.blue[900],
-                            fontWeight: FontWeight.bold,
-                            fontSize: 28.0),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Manage My Tasks',
+                            style: TextStyle(
+                              color: Colors.blue[900],
+                              fontWeight: FontWeight.bold,
+                              fontSize: 28.0,
+                            ),
+                          ),
+                        ],
                       ),
-                      SizedBox(height: 20.0,),
-                      Text(
-                        'Version: 1.5.0',
-                        style: TextStyle(
-                            color: Colors.red,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 22.0),
+                      SizedBox(
+                        height: 20.0,
                       ),
-                      Text(
-                        'Created By Imira Randeniya',
-                        style: TextStyle(
-                            color: Colors.blue[900],
-                            fontWeight: FontWeight.bold,
-                            fontSize: 22.0),
+                      Container(
+                          height: 60.0,
+                          width: MediaQuery.of(context).size.width - 10.0,
+                          decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(8.0)),
+                            color: Colors.white,
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Text(
+                                  'Version',
+                                  style: TextStyle(
+                                      color: Colors.blue[900],
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 20.0),
+                                ),
+                                Text(
+                                  '1.8.0',
+                                  style: TextStyle(
+                                      color: Colors.blue[900],
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 20.0),
+                                ),
+                              ],
+                            ),
+                          )),
+                      SizedBox(
+                        height: 10.0,
                       ),
+                      Container(
+                        height: 60.0,
+                        width: MediaQuery.of(context).size.width - 10.0,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(7.0),
+                            color: Colors.white),
+                        child: Padding(
+                          padding: EdgeInsets.fromLTRB(10.0, 18.0, 10.0, 10.0),
+                          child: Text(
+                            'Created By Imira Randeniya',
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                                color: Colors.blue[900],
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20.0),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 10.0,),
                     ],
                   ),
                 ),

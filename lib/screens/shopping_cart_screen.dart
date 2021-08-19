@@ -30,7 +30,7 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
       body: Column(
         children: <Widget>[
           Container(
-            height: 50.0,
+            height: 55.0,
             width: double.infinity,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
@@ -41,7 +41,7 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
             child: Padding(
               padding: EdgeInsets.fromLTRB(20.0, 0.0, 10.0, 0.0),
               child: Text(
-                'Shopping Cart',
+                'Shopping List',
                 style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,

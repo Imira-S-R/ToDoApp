@@ -158,7 +158,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                         width: 120.0,
                         decoration: BoxDecoration(
                             borderRadius:
-                                BorderRadius.all(Radius.circular(7.0)),
+                                BorderRadius.all(Radius.circular(40.0)),
                             color: Colors.green),
                         child: Center(
                             child: Text(
@@ -183,7 +183,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                         width: 120.0,
                         decoration: BoxDecoration(
                             borderRadius:
-                                BorderRadius.all(Radius.circular(7.0)),
+                                BorderRadius.all(Radius.circular(40.0)),
                             color: Colors.red[600]),
                         child: Center(
                             child: Text(

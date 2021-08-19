@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:manage_my_time/screens/add_task_screen.dart';
 import 'package:manage_my_time/screens/home_screen.dart';
 
-
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());

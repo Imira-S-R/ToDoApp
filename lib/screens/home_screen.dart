@@ -29,7 +29,17 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: Colors.blue[900],
+        leading: SizedBox.shrink(),
         actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (_) => ShoppingCartScreen()));
+            },
+            icon: Icon(Icons.shopping_cart_rounded),
+            color: Colors.white,
+            tooltip: 'Shopping List',
+          ),
           IconButton(
               tooltip: 'About',
               onPressed: () {
@@ -37,14 +47,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     context, MaterialPageRoute(builder: (_) => Settings()));
               },
               icon: Icon(Icons.info_rounded)),
-          IconButton(
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (_) => ShoppingCartScreen()));
-            },
-            icon: Icon(Icons.shopping_cart_rounded),
-            color: Colors.white,
-            tooltip: 'Add new shopping list',
-          )
         ],
       ),
       body: Column(
@@ -81,6 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
+          SizedBox(height: 20.0,),
           Expanded(child: TaskWidget()),
         ],
       ),
