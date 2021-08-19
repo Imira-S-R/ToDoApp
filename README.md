@@ -9,6 +9,7 @@ If There Is Any Problem Or A New Feature You Want Let Me Know.
 Version History
 =======
 Version 1.0.0 - Initial Version <br />
-Version 1.5.0 - Fixed A Bug When Running On Tablets And Added A Shopping List To The App.
+Version 1.5.0 - Fixed A Bug When Running On Tablets And Added A Shopping List To The App. <br />
+Version 1.8.0 - Added Animation And Changed the UI Of Settings Screen.
 
 
