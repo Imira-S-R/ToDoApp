@@ -4,6 +4,7 @@ import 'package:manage_my_time/models/task_model.dart';
 import 'package:manage_my_time/screens/home_screen.dart';
 import 'package:manage_my_time/screens/task_viewer_screen.dart';
 import 'package:animations/animations.dart';
+import 'package:manage_my_time/widgets/no_task_found_widget.dart';
 
 class TaskWidget extends StatefulWidget {
   const TaskWidget({Key? key}) : super(key: key);
@@ -42,9 +43,9 @@ class _TaskWidgetState extends State<TaskWidget> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: tasks.length,
+      itemCount: tasks.length == 0 ? 1 : tasks.length,
       itemBuilder: (context, int index) {
-        return Padding(
+        return tasks.length == 0 ? NoTaskFound() : Padding(
           padding: EdgeInsets.all(8.0),
           child: OpenContainer(
             transitionType: ContainerTransitionType.fadeThrough,
@@ -53,10 +54,10 @@ class _TaskWidgetState extends State<TaskWidget> {
                   title: Text(
                     tasks[index].title,
                     style: TextStyle(
-                        color: Colors.blue[900], fontWeight: FontWeight.bold),
+                        color: Theme.of(context).textTheme.headline1!.color, fontWeight: FontWeight.bold),
                   ),
                   onTap: openContainer,
-                  tileColor: Colors.white,
+                  tileColor: Theme.of(context).accentColor,
                   leading: IconButton(
                     onPressed: () {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -81,6 +82,8 @@ class _TaskWidgetState extends State<TaskWidget> {
             },
             onClosed: (_) => HomeScreen(),
             transitionDuration: Duration(milliseconds: 400),
+            openColor: Theme.of(context).primaryColor,
+            middleColor: Theme.of(context).primaryColor,
           ),
         );
       },

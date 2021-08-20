@@ -1,4 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:intl/intl.dart';
 import 'package:manage_my_time/screens/add_task_screen.dart';
 import 'package:manage_my_time/screens/settings_screen.dart';
 import 'package:manage_my_time/screens/shopping_cart_screen.dart';
@@ -23,9 +27,12 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Colors.red,
         splashColor: Colors.red[900],
         tooltip: 'Add New Task',
-        child: Icon(Icons.add_rounded),
+        child: Icon(
+          Icons.add_rounded,
+          color: Colors.white,
+        ),
       ),
-      backgroundColor: Color(0xfff5f5f5),
+      backgroundColor: Theme.of(context).primaryColor,
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: Colors.blue[900],
@@ -41,12 +48,14 @@ class _HomeScreenState extends State<HomeScreen> {
             tooltip: 'Shopping List',
           ),
           IconButton(
-              tooltip: 'About',
-              onPressed: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (_) => Settings()));
-              },
-              icon: Icon(Icons.info_rounded)),
+            tooltip: 'Settings',
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (_) => Settings()));
+            },
+            icon: Icon(Icons.info_rounded),
+            color: Colors.white,
+          ),
         ],
       ),
       body: Column(
@@ -83,7 +92,9 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-          SizedBox(height: 20.0,),
+          SizedBox(
+            height: 20.0,
+          ),
           Expanded(child: TaskWidget()),
         ],
       ),

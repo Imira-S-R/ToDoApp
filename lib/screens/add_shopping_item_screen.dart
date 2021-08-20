@@ -26,7 +26,7 @@ class _AddShoppingItemState extends State<AddShoppingItem> {
               Navigator.pushReplacement(context,
                   MaterialPageRoute(builder: (_) => ShoppingCartScreen()));
             },
-            icon: Icon(Icons.arrow_back_ios_new_rounded)),
+            icon: Icon(Icons.arrow_back_ios_new_rounded), color: Colors.white,),
       ),
       body: Column(
         children: <Widget>[

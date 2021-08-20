@@ -125,7 +125,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.grey),
                     ),
-                  ),
+                  )
                 ),
                 
                 Row(

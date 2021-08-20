@@ -13,19 +13,20 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).primaryColor,
       floatingActionButton: FloatingActionButton(
         onPressed: (){
           Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => AddShoppingItem()));
         },
         backgroundColor: Colors.red,
         splashColor: Colors.red[900],
-        child: Icon(Icons.add),
+        child: Icon(Icons.add, color: Colors.white,),
       ),
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: Colors.blue[900],
         leading: IconButton(
-            onPressed: () {Navigator.pop(context);}, icon: Icon(Icons.arrow_back_ios_new_rounded)),
+            onPressed: () {Navigator.pop(context);}, icon: Icon(Icons.arrow_back_ios_new_rounded), color: Colors.white,),
       ),
       body: Column(
         children: <Widget>[
@@ -37,7 +38,7 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
                   bottomRight: Radius.circular(20.0),
                   bottomLeft: Radius.circular(20.0)),
               color: Colors.blue[900],
-            ),
+          ),
             child: Padding(
               padding: EdgeInsets.fromLTRB(20.0, 0.0, 10.0, 0.0),
               child: Text(

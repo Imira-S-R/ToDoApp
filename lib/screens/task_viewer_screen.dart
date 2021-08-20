@@ -57,7 +57,7 @@ class _TaskViewerScreenState extends State<TaskViewerScreen> {
               Navigator.pushReplacement(
                   context, MaterialPageRoute(builder: (_) => HomeScreen()));
             },
-            icon: Icon(Icons.delete_rounded),
+            icon: Icon(Icons.delete_rounded, color: Colors.white,),
             tooltip: 'Delete Task',
           ),
         ],
@@ -65,7 +65,7 @@ class _TaskViewerScreenState extends State<TaskViewerScreen> {
       body: Container(
         width: double.infinity,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Theme.of(context).primaryColor,
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(30.0), topRight: Radius.circular(30.0)),
         ),
@@ -77,10 +77,10 @@ class _TaskViewerScreenState extends State<TaskViewerScreen> {
               Flexible(
                 child: Text(
                   tasks[widget.index].title,
-                  maxLines: 4,
+                  maxLines: 5,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                      color: Colors.black,
+                      color: Theme.of(context).textTheme.headline1!.color,
                       fontWeight: FontWeight.bold,
                       fontSize: 24.0),
                 ),
@@ -88,14 +88,14 @@ class _TaskViewerScreenState extends State<TaskViewerScreen> {
               SizedBox(
                 height: 10.0,
               ),
-              Divider(height: 5.0, color: Colors.grey[900],),
+              Divider(height: 5.0, color: Colors.black,),
                SizedBox(
                 height: 10.0,
               ),
               Text(
                 'Description',
                 style: TextStyle(
-                    color: Colors.blue[900],
+                    color: Theme.of(context).textTheme.headline2!.color,
                     fontWeight: FontWeight.bold,
                     fontSize: 17.0,
                     letterSpacing: 0.2),
@@ -111,7 +111,7 @@ class _TaskViewerScreenState extends State<TaskViewerScreen> {
                   maxLines: 12,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                    color: Colors.grey[800],
+                    color: Theme.of(context).textTheme.headline1!.color,
                     fontSize: 18.0,
                   ),
                 ),

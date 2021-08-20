@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:manage_my_time/db/shopping_item_database.dart';
 import 'package:manage_my_time/models/shopping_item_model.dart';
+import 'package:manage_my_time/widgets/no_shopping_item_found.dart';
 
 class ShoppingItemWidget extends StatefulWidget {
   const ShoppingItemWidget({Key? key}) : super(key: key);
@@ -33,9 +34,9 @@ class _ShoppingItemWidgetState extends State<ShoppingItemWidget> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: items.length,
+      itemCount: items.length == 0 ? 1 : items.length,
       itemBuilder: (context, int index) {
-        return Dismissible(
+        return items.length == 0 ? NoItemFound() : Dismissible(
           key: UniqueKey(),
           onDismissed: (direction) {
             ShoppingItemDatabase.instance.delete(items[index].id!);
@@ -43,7 +44,7 @@ class _ShoppingItemWidgetState extends State<ShoppingItemWidget> {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text(
                 '"${items[index].itemName}" Removed',
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
               ),
               backgroundColor: Colors.red,
             ));
@@ -54,7 +55,7 @@ class _ShoppingItemWidgetState extends State<ShoppingItemWidget> {
               height: 50.0,
               width: double.infinity - 10.0,
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Theme.of(context).accentColor,
                 borderRadius: BorderRadius.circular(7.0),
               ),
               child: Padding(
@@ -66,7 +67,7 @@ class _ShoppingItemWidgetState extends State<ShoppingItemWidget> {
                     Text(
                       items[index].itemName,
                       style: TextStyle(
-                          color: Colors.black,
+                          color: Theme.of(context).textTheme.headline1!.color,
                           fontWeight: FontWeight.bold,
                           fontSize: 20.0),
                     ),
