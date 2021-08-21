@@ -12,6 +12,10 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  _updatetask() {
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -21,7 +25,7 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             routes: {
               '/home': (context) => HomeScreen(),
-              '/add_task_screen': (context) => AddTaskScreen(),
+              // '/add_task_screen': (context) => AddTaskScreen(updateTasks: (){},),
             },
             themeMode: themeProvider.themeMode,
             theme: MyThemes.lightTheme,

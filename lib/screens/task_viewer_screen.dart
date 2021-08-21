@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:manage_my_time/db/task_database.dart';
 import 'package:manage_my_time/models/task_model.dart';
+import 'package:manage_my_time/screens/edit_task_screen.dart';
 import 'package:manage_my_time/screens/home_screen.dart';
 
 class TaskViewerScreen extends StatefulWidget {
-  late int index;
-  late int id;
+  final int index;
+  final int id;
   TaskViewerScreen({required this.index, required this.id});
 
   @override
@@ -16,7 +17,12 @@ class _TaskViewerScreenState extends State<TaskViewerScreen> {
   late List<Task> tasks = [];
   bool isLoading = false;
   bool isCompleted = false;
-  final snackBar = SnackBar(content: Text('Task Completed And Removed', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),), backgroundColor: Colors.red);
+  final snackBar = SnackBar(
+      content: Text(
+        'Task Completed And Removed',
+        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+      ),
+      backgroundColor: Colors.red);
 
   @override
   void initState() {
@@ -40,27 +46,12 @@ class _TaskViewerScreenState extends State<TaskViewerScreen> {
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: Colors.red[900],
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back_ios_new_rounded,
-            color: Colors.white,
-          ),
-          onPressed: () {
-            Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (_) => HomeScreen()));
-          },
+        leading: SizedBox.shrink(),
+        centerTitle: true,
+        title: Text(
+          'Your Tasks',
+          style: TextStyle(color: Colors.white),
         ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              TaskDatabase.instance.delete(widget.id);
-              Navigator.pushReplacement(
-                  context, MaterialPageRoute(builder: (_) => HomeScreen()));
-            },
-            icon: Icon(Icons.delete_rounded, color: Colors.white,),
-            tooltip: 'Delete Task',
-          ),
-        ],
       ),
       body: Container(
         width: double.infinity,
@@ -88,8 +79,11 @@ class _TaskViewerScreenState extends State<TaskViewerScreen> {
               SizedBox(
                 height: 10.0,
               ),
-              Divider(height: 5.0, color: Colors.black,),
-               SizedBox(
+              Divider(
+                height: 5.0,
+                color: Colors.black,
+              ),
+              SizedBox(
                 height: 10.0,
               ),
               Text(
@@ -118,27 +112,6 @@ class _TaskViewerScreenState extends State<TaskViewerScreen> {
               ),
               SizedBox(
                 height: 10.0,
-              ),
-              GestureDetector(
-                onTap: (){
-                  TaskDatabase.instance.delete(tasks[widget.index].id!);
-                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => HomeScreen()));
-                },
-                child: Container(
-                  height: 50.0,
-                  width: 150.0,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(7.0)),
-                      color: Colors.red),
-                  child: Center(
-                    child: Text(
-                      'Mark As Completed',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ),
               ),
             ],
           ),

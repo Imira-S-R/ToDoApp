@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:manage_my_time/db/shopping_item_database.dart';
 import 'package:manage_my_time/models/shopping_item_model.dart';
-import 'package:manage_my_time/screens/home_screen.dart';
 import 'package:manage_my_time/screens/shopping_cart_screen.dart';
 
 class AddShoppingItem extends StatefulWidget {
-  const AddShoppingItem({Key? key}) : super(key: key);
+  final Function refershTasks;
+  AddShoppingItem({required this.refershTasks});
 
   @override
   _AddShoppingItemState createState() => _AddShoppingItemState();
@@ -22,11 +22,12 @@ class _AddShoppingItemState extends State<AddShoppingItem> {
         elevation: 0.0,
         backgroundColor: Colors.red[900],
         leading: IconButton(
-            onPressed: () {
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (_) => ShoppingCartScreen()));
-            },
-            icon: Icon(Icons.arrow_back_ios_new_rounded), color: Colors.white,),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.arrow_back_ios_new_rounded),
+          color: Colors.white,
+        ),
       ),
       body: Column(
         children: <Widget>[
@@ -79,9 +80,15 @@ class _AddShoppingItemState extends State<AddShoppingItem> {
                   children: <Widget>[
                     GestureDetector(
                       onTap: () {
-                        var item = ShoppingItem(itemName: itemName.text, itemPrice: 0);
-                        ShoppingItemDatabase.instance.create(item);
-                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => ShoppingCartScreen()));
+                        if (itemName.text != '') {
+                          setState(() {
+                            var item = ShoppingItem(
+                                itemName: itemName.text, itemPrice: 0);
+                            ShoppingItemDatabase.instance.create(item);
+                            widget.refershTasks();
+                            Navigator.pop(context);
+                          });
+                        }
                       },
                       child: Container(
                         height: 50.0,
@@ -106,10 +113,7 @@ class _AddShoppingItemState extends State<AddShoppingItem> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (_) => ShoppingCartScreen()));
+                        Navigator.pop(context);
                       },
                       child: Container(
                         height: 50.0,

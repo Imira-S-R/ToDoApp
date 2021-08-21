@@ -1,12 +1,13 @@
-import 'dart:developer';
-
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:intl/intl.dart';
+import 'package:manage_my_time/db/task_database.dart';
+import 'package:manage_my_time/models/task_model.dart';
 import 'package:manage_my_time/screens/add_task_screen.dart';
+import 'package:manage_my_time/screens/edit_task_screen.dart';
 import 'package:manage_my_time/screens/settings_screen.dart';
 import 'package:manage_my_time/screens/shopping_cart_screen.dart';
-import 'package:manage_my_time/widgets/task_widget.dart';
+import 'package:manage_my_time/screens/task_viewer_screen.dart';
+import 'package:manage_my_time/widgets/no_task_found_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -16,13 +17,44 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  bool isCompleted = false;
+  late List<Task> tasks = [];
+  late final Task? task;
+  bool isLoading = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    refreshNotes();
+  }
+
+  // @override
+  // void dispose() {
+  //   TaskDatabase.instance.close();
+
+  //   super.dispose();
+  // }
+
+  Future refreshNotes() async {
+    setState(() => isLoading = true);
+
+    this.tasks = await TaskDatabase.instance.readAllNotes();
+
+    setState(() => isLoading = false);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (_) => AddTaskScreen()));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (_) => AddTaskScreen(
+                        updateTasks: refreshNotes,
+                      )));
         },
         backgroundColor: Colors.red,
         splashColor: Colors.red[900],
@@ -95,7 +127,107 @@ class _HomeScreenState extends State<HomeScreen> {
           SizedBox(
             height: 20.0,
           ),
-          Expanded(child: TaskWidget()),
+          Expanded(
+              child: ListView.builder(
+            itemCount: tasks.length == 0 ? 1 : tasks.length,
+            itemBuilder: (context, int index) {
+              return tasks.length == 0
+                  ? NoTaskFound()
+                  : Dismissible(
+                      key: UniqueKey(),
+                      onDismissed: (direction) {
+                        setState(() {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text(
+                              'Deleted "${tasks[index].title}"',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            backgroundColor: Colors.red,
+                          ));
+                          TaskDatabase.instance.delete(tasks[index].id!);
+                          tasks.removeAt(index);
+                        });
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: OpenContainer(
+                          transitionType: ContainerTransitionType.fadeThrough,
+                          closedBuilder:
+                              (BuildContext _, VoidCallback openContainer) {
+                            return ListTile(
+                              title: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Flexible(
+                                    child: Text(
+                                      tasks[index].title,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(
+                                          color: Theme.of(context)
+                                              .textTheme
+                                              .headline1!
+                                              .color,
+                                          fontWeight: FontWeight.bold,
+                                          decoration: tasks[index].isCompleted
+                                              ? TextDecoration.lineThrough
+                                              : TextDecoration.none,
+                                          decorationColor: Colors.grey[800],
+                                          decorationThickness: 2.0),
+                                    ),
+                                  ),
+                                  GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (_) => EditTaskScreen(
+                                                    title: tasks[index].title,
+                                                    description: tasks[index]
+                                                        .description,
+                                                    id: tasks[index].id!,
+                                                    updateTask: refreshNotes)));
+                                      },
+                                      child: Icon(
+                                        Icons.edit,
+                                        color: Colors.red,
+                                      ))
+                                ],
+                              ),
+                              onTap: openContainer,
+                              tileColor: Theme.of(context).accentColor,
+                              leading: IconButton(
+                                iconSize: 22.0,
+                                onPressed: () {
+                                  setState(() {
+                                    isCompleted = !isCompleted;
+                                    TaskDatabase.instance.update(Task(
+                                        isCompleted: isCompleted,
+                                        title: tasks[index].title,
+                                        description: tasks[index].description,
+                                        id: tasks[index].id));
+                                    refreshNotes();
+                                  });
+                                },
+                                icon: Icon(Icons.done_outline_rounded),
+                                color: Colors.green,
+                              ),
+                            );
+                          },
+                          openBuilder: (BuildContext _, VoidCallback __) {
+                            return TaskViewerScreen(
+                                index: index, id: tasks[index].id!);
+                          },
+                          onClosed: (_) => HomeScreen(),
+                          transitionDuration: Duration(milliseconds: 400),
+                          openColor: Theme.of(context).primaryColor,
+                          middleColor: Theme.of(context).primaryColor,
+                        ),
+                      ),
+                    );
+            },
+          )),
         ],
       ),
     );

@@ -82,7 +82,7 @@ class Settings extends StatelessWidget {
                                       fontSize: 20.0),
                                 ),
                                 Text(
-                                  '2.0.0',
+                                  '2.5.0',
                                   style: TextStyle(
                                       color: Colors.red,
                                       fontWeight: FontWeight.w700,

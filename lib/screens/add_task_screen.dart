@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:manage_my_time/db/task_database.dart';
 import 'package:manage_my_time/models/task_model.dart';
 import 'package:manage_my_time/screens/home_screen.dart';
 
 class AddTaskScreen extends StatefulWidget {
-  const AddTaskScreen({Key? key}) : super(key: key);
+  final Function updateTasks;
+  AddTaskScreen({required this.updateTasks});
 
   @override
   _AddTaskScreenState createState() => _AddTaskScreenState();
@@ -42,7 +42,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
     setState(() => isLoading = false);
   }
 
-  Future addPassword() async {
+  addPassword() async {
     final task = Task(
         id: null,
         title: title.text,
@@ -58,7 +58,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
         elevation: 0.0,
         backgroundColor: Colors.blue[800],
         leading: IconButton(
-            onPressed: () => Navigator.pushReplacementNamed(context, '/home'),
+            onPressed: () => Navigator.pop(context),
             icon: Icon(
               Icons.arrow_back_ios_new_rounded,
               color: Colors.white,
@@ -116,18 +116,16 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                   style: TextStyle(color: Colors.grey[600], fontSize: 14.0),
                 ),
                 TextField(
-                  maxLength: 100,
-                  controller: description,
-                  onSubmitted: (value) {
-                    description.text = value;
-                  },
-                  decoration: InputDecoration(
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey),
-                    ),
-                  )
-                ),
-                
+                    maxLength: 100,
+                    controller: description,
+                    onSubmitted: (value) {
+                      description.text = value;
+                    },
+                    decoration: InputDecoration(
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey),
+                      ),
+                    )),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -149,8 +147,8 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                           });
                         } else {
                           addPassword();
-                          Navigator.pushReplacement(context,
-                              MaterialPageRoute(builder: (_) => HomeScreen()));
+                          widget.updateTasks();
+                          Navigator.pop(context);
                         }
                       },
                       child: Container(
@@ -176,7 +174,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.pushReplacementNamed(context, '/home');
+                        Navigator.pop(context);
                       },
                       child: Container(
                         height: 60.0,
