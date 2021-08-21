@@ -2,14 +2,14 @@
 
 A Task Management App Made Using Flutter And SQLite
 =======
-Basic To Do App Created Using Flutter And SQLite Database.<br />
-More Features Will Be Added Soon.<br />
-If There Is Any Problem Or A New Feature You Want Let Me Know.
+To Do App Created Using Flutter And SQLite Database.<br />
+
 
 Version History
 =======
 Version 1.0.0 - Initial Version <br />
 Version 1.5.0 - Fixed A Bug When Running On Tablets And Added A Shopping List To The App. <br />
-Version 1.8.0 - Added Animation And Changed the UI Of Settings Screen.
+Version 1.8.0 - Added Animation And Changed the UI Of Settings Screen. <br />
+Version 2.0.0 - Added Dark Theme
 
 
