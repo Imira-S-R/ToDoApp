@@ -14,6 +14,4 @@ Version 2.0.0 - Added Dark Theme. <br />
 Version 2.5.0 - Added Editing For Tasks And Fixed A Few Bugs
 
 
-![Hello](https://drive.google.com/file/d/16M847e15UB4Hu9uldGnsXxGupviGB0GG/view?usp=sharing)
-
 
